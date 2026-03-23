@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES6", /* Use modern JavaScript */
+    "module": "commonjs", /* Node.js uses commonjs */
+    "rootDir": "./src", /* Source files location */
+    "outDir": "./dist", /* Compiled files location */
+    "esModuleInterop": true, /* Helps with Express imports */
+    "forceConsistentCasingInFileNames": true,
+    "strict": true, /* Enable strict type checking */
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "src/**/*",
+    "server.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
