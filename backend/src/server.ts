@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import { prisma } from './infrastructure/database/prisma';
 import { PrismaBookmarkRepository } from './infrastructure/repositories/BookmarkRepository';
