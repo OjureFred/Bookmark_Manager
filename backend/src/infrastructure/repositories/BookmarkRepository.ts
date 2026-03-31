@@ -79,4 +79,9 @@ export class PrismaBookmarkRepository implements IBookmarkRepository {
             where: { id: id.value },
         });
     }
+
+    async getAll(): Promise<Bookmark[]> {
+        const rows = await this.dbClient.bookmark.findMany();
+        return rows.map((row: any) => this.mapToEntity(row));
+    }
 }

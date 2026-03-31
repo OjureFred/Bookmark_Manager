@@ -3,6 +3,7 @@ import express from 'express';
 import { prisma } from './infrastructure/database/prisma';
 import { PrismaBookmarkRepository } from './infrastructure/repositories/BookmarkRepository';
 import { CreateBookmarkUseCase } from './application/use-cases/CreateBookmarkUseCase';
+import { RetrieveBookmarksUseCase } from './application/use-cases/RetrieveBookmarksUseCase';
 import { BookmarkController } from './interface/controllers/BookmarkController';
 import { createBookmarkRoutes } from './interface/routes/bookmarkRoutes';
 
@@ -12,7 +13,8 @@ app.use(express.json());
 // Dependency Injection
 const bookmarkRepository = new PrismaBookmarkRepository(prisma);
 const createBookmarkUseCase = new CreateBookmarkUseCase(bookmarkRepository);
-const bookmarkController = new BookmarkController(createBookmarkUseCase);
+const retrieveBookmarksUseCase = new RetrieveBookmarksUseCase(bookmarkRepository);
+const bookmarkController = new BookmarkController(createBookmarkUseCase, retrieveBookmarksUseCase);
 
 // Routes
 app.use('/api/bookmarks', createBookmarkRoutes(bookmarkController));
