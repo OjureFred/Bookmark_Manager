@@ -4,6 +4,10 @@ import { prisma } from './infrastructure/database/prisma';
 import { PrismaBookmarkRepository } from './infrastructure/repositories/BookmarkRepository';
 import { CreateBookmarkUseCase } from './application/use-cases/CreateBookmarkUseCase';
 import { RetrieveBookmarksUseCase } from './application/use-cases/RetrieveBookmarksUseCase';
+import { FindBookmarkByIdUseCase } from './application/use-cases/FindBookmarkByIdUseCase';
+import { FindBookmarkByUrlUseCase } from './application/use-cases/FindBookmarkByUrlUseCase';
+import { DeleteBookmarkUseCase } from './application/use-cases/DeleteBookmarkUseCase';
+import { UpdateBookmarkUseCase } from './application/use-cases/UpdateBookmarkUseCase';
 import { BookmarkController } from './interface/controllers/BookmarkController';
 import { createBookmarkRoutes } from './interface/routes/bookmarkRoutes';
 
@@ -14,7 +18,11 @@ app.use(express.json());
 const bookmarkRepository = new PrismaBookmarkRepository(prisma);
 const createBookmarkUseCase = new CreateBookmarkUseCase(bookmarkRepository);
 const retrieveBookmarksUseCase = new RetrieveBookmarksUseCase(bookmarkRepository);
-const bookmarkController = new BookmarkController(createBookmarkUseCase, retrieveBookmarksUseCase);
+const findBookmarkByIdUseCase = new FindBookmarkByIdUseCase(bookmarkRepository);
+const findBookmarkByUrlUseCase = new FindBookmarkByUrlUseCase(bookmarkRepository);
+const deleteBookmarkUseCase = new DeleteBookmarkUseCase(bookmarkRepository);
+const updateBookmarkUseCase = new UpdateBookmarkUseCase(bookmarkRepository);
+const bookmarkController = new BookmarkController(createBookmarkUseCase, retrieveBookmarksUseCase, findBookmarkByIdUseCase, findBookmarkByUrlUseCase, deleteBookmarkUseCase, updateBookmarkUseCase);
 
 // Routes
 app.use('/api/bookmarks', createBookmarkRoutes(bookmarkController));

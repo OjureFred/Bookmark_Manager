@@ -1,11 +1,27 @@
 import { Pool, PoolClient } from 'pg';
 import { pool } from '../database/pool';
-import { UnitOfWork } from '../../domain/repositories/UnitOfWork';
+import { IUnitOfWork } from '../../domain/repositories/IUnitOfWork';
 
-export class PostgresUnitOfWork implements UnitOfWork {
+export class PostgresUnitOfWork implements IUnitOfWork {
     private client: PoolClient | null = null;
 
     constructor(private readonly dbPool: Pool = pool) { }
+
+    async execute<T>(work: () => Promise<T>): Promise<T> {
+        this.client = await this.dbPool.connect();
+        await this.client.query('BEGIN');
+        try {
+            const result = await work();
+            await this.client.query('COMMIT');
+            return result;
+        } catch (error) {
+            await this.client.query('ROLLBACK');
+            throw error;
+        } finally {
+            this.client.release();
+            this.client = null;
+        }
+    }
 
     async startTransaction(): Promise<void> {
         this.client = await this.dbPool.connect();
