@@ -148,19 +148,18 @@ Run these from the `backend/` directory:
 | Start dev server | `npm run dev`      | Hot-reload dev server via nodemon  |
 | Build           | `npm run build`     | Compile TypeScript → `dist/`       |
 | Start prod      | `npm run start`     | Run compiled production build      |
+| Test            | `npm run test`      | Run unit tests                     |
+| Coverage        | `npm run coverage`  | Run unit tests with coverage       |
 
 ---
 
-## 🔮 Roadmap
+## 📖 API Documentation
 
-- [ ] Implement application layer (use cases: create, update, delete, search bookmarks)
-- [ ] Implement infrastructure layer (database repository — SQLite / PostgreSQL)
-- [ ] Implement presentation layer (REST API routes and controllers)
-- [ ] Build the frontend (React / Vite)
-- [ ] Add unit tests for domain logic
-- [ ] Docker support
+Detailed information about the API endpoints, request bodies, and response formats can be found in:
+👉 [**Backend API Documentation**](./backend/API_DOCUMENTATION.md)
 
 ---
+
 
 ## 📄 License
 
