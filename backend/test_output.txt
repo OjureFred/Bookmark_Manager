@@ -1,0 +1,92 @@
+
+> backend@1.0.0 test
+> jest __tests__/Bookmark.test.ts
+
+(node:13152) Warning: `--localstorage-file` was provided without a valid path
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL __tests__/Bookmark.test.ts
+  Bookmark
+    create
+      ÔêÜ should create bookmark with required fields (11 ms)
+      ÔêÜ should create bookmark with all fields (2 ms)
+      ÔêÜ should normalize URL when creating
+      ├ù should throw error for invalid URL (2 ms)
+      ÔêÜ should throw error for invalid title (23 ms)
+    reconstitute
+      ÔêÜ should recreate bookmark from persistence data (4 ms)
+      ÔêÜ should handle null description in reconstitution (2 ms)
+    updateTitle
+      ÔêÜ should update title and updatedAt timestamp (1 ms)
+      ÔêÜ should throw error for invalid title (2 ms)
+    updateDescription
+      ÔêÜ should update description and updatedAt timestamp (1 ms)
+      ÔêÜ should set description to null when updating with null/undefined (1 ms)
+    addTag
+      ÔêÜ should add tag and update timestamp (2 ms)
+      ÔêÜ should not add duplicate tag (1 ms)
+      ÔêÜ should throw error for invalid tag (5 ms)
+    removeTag
+      ÔêÜ should remove existing tag and update timestamp (1 ms)
+      ÔêÜ should not change tags when removing non-existent tag
+    getters
+      ÔêÜ should return correct domain from URL (1 ms)
+      ÔêÜ should return all properties correctly (1 ms)
+
+  ÔùÅ Bookmark ÔÇ║ create ÔÇ║ should throw error for invalid URL
+
+    expect(received).toThrow(expected)
+
+    Expected substring: "Invalid URL format"
+
+    Received function did not throw
+
+      62 |
+      63 |     it('should throw error for invalid URL', () => {
+    > 64 |       expect(() => Bookmark.create('invalid-url', 'Title')).toThrow('Invalid URL format');
+         |                                                             ^
+      65 |     });
+      66 |
+      67 |     it('should throw error for invalid title', () => {
+
+      at Object.<anonymous> (__tests__/Bookmark.test.ts:64:61)
+
+---------------------------------|---------|----------|---------|---------|-------------------
+File                             | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+---------------------------------|---------|----------|---------|---------|-------------------
+All files                        |   33.23 |    33.67 |   41.32 |   35.14 |                   
+ src                             |       0 |        0 |       0 |       0 |                   
+  server.ts                      |       0 |        0 |       0 |       0 | 1-48              
+ src/application/use-cases       |       0 |        0 |       0 |       0 |                   
+  CreateBookmarkUseCase.ts       |       0 |        0 |       0 |       0 | 2-37              
+  DeleteBookmarkUseCase.ts       |       0 |      100 |       0 |       0 | 2-8               
+  FindBookmarkByIdUseCase.ts     |       0 |        0 |       0 |       0 | 3-13              
+  FindBookmarkByUrlUseCase.ts    |       0 |        0 |       0 |       0 | 4-12              
+  RetrieveBookmarksUseCase.ts    |       0 |      100 |       0 |       0 | 4-8               
+  UpdateBookmarkUseCase.ts       |       0 |        0 |       0 |       0 | 3-15              
+ src/domain/aggregates           |     100 |      100 |     100 |     100 |                   
+  Bookmark.ts                    |     100 |      100 |     100 |     100 |                   
+ src/domain/value-objects        |   69.91 |    60.37 |   63.63 |   71.84 |                   
+  BookmarkDate.ts                |   54.54 |       75 |   42.85 |   54.54 | 9,19-32           
+  BookmarkId.ts                  |   81.81 |       75 |      80 |   81.81 | 12,26             
+  Description.ts                 |   61.53 |     37.5 |   42.85 |   61.53 | 13,26-40          
+  Tag.ts                         |   83.33 |       75 |     100 |   83.33 | 8,12              
+  Tags.ts                        |   57.57 |    44.44 |   57.89 |   60.86 | 16,22-23,32,43-52 
+  Title.ts                       |      80 |    83.33 |      75 |      80 | 11,23             
+  Url.ts                         |    82.6 |    83.33 |   77.77 |    82.6 | 15,28,52-55       
+ src/infrastructure/database     |       0 |        0 |       0 |       0 |                   
+  PrismaUnitOfWork.ts            |       0 |      100 |       0 |       0 | 2-7               
+  pool.ts                        |       0 |        0 |     100 |       0 | 1-18              
+  prisma.ts                      |       0 |        0 |     100 |       0 | 1-16              
+ src/infrastructure/repositories |       0 |        0 |       0 |       0 |                   
+  BookmarkRepository.ts          |       0 |        0 |       0 |       0 | 3-85              
+  UnitOfWork.ts                  |       0 |        0 |       0 |       0 | 2-47              
+ src/interface/controllers       |       0 |        0 |       0 |       0 |                   
+  BookmarkController.ts          |       0 |        0 |       0 |       0 | 9-77              
+ src/interface/routes            |       0 |      100 |       0 |       0 |                   
+  bookmarkRoutes.ts              |       0 |      100 |       0 |       0 | 1-12              
+---------------------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 17 passed, 18 total
+Snapshots:   0 total
+Time:        25.189 s
+Ran all test suites matching __tests__/Bookmark.test.ts.

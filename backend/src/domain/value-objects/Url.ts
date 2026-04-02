@@ -7,13 +7,14 @@ export class Url {
     ) { }
 
     static create(url: string): Url {
-        // Validate URL format
-        if (!this.isValidUrl(url)) {
+        // Normalize URL first (remove trailing slashes, ensure protocol)
+        const normalized = this.normalize(url);
+
+        // Validate normalized URL format
+        if (!this.isValidUrl(normalized)) {
             throw new Error('Invalid URL format');
         }
 
-        // Normalize URL (remove trailing slashes, lowercase domain, etc.)
-        const normalized = this.normalize(url);
         const { protocol, domain } = this.parse(normalized);
 
         return new Url(normalized, domain, protocol);
@@ -30,10 +31,12 @@ export class Url {
 
     private static normalize(url: string): string {
         // Remove trailing slash
-        let normalized = url.replace(/\/$/, '');
-        // Ensure https:// if no protocol specified
+        let normalized = url.trim().replace(/\/$/, '');
+        // Ensure https:// if no protocol specified and it looks like a domain
         if (!normalized.startsWith('http://') && !normalized.startsWith('https://')) {
-            normalized = 'https://' + normalized;
+            if (normalized.includes('.')) {
+                normalized = 'https://' + normalized;
+            }
         }
         return normalized;
     }

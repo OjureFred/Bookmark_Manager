@@ -2,17 +2,19 @@
   "compilerOptions": {
     "target": "ES6", /* Use modern JavaScript */
     "module": "commonjs", /* Node.js uses commonjs */
-    "rootDir": "./src", /* Source files location */
+    "rootDir": ".", /* Source files location */
     "outDir": "./dist", /* Compiled files location */
     "esModuleInterop": true, /* Helps with Express imports */
     "forceConsistentCasingInFileNames": true,
     "strict": true, /* Enable strict type checking */
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": ["jest"]
   },
   "include": [
     "src/**/*",
-    "server.ts"
+    "server.ts",
+    "__tests__/**/*"
   ],
   "exclude": [
     "node_modules",
