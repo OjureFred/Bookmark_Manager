@@ -75,7 +75,7 @@ Fetch details for a specific bookmark using its unique UUID.
 ### 4. Search Bookmark by URL
 Find details of a bookmark by searching for its exact URL.
 
-- **URL:** `/url/:url`
+- **URL:** `/search/url/:url`
 - **Method:** `GET`
 - **URL Params:**
   - `url` (required): Character-encoded URL of the bookmark.

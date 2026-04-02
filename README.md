@@ -93,11 +93,19 @@ npx tsc --noEmit
 
 ## 🔌 API Endpoints
 
-| Method | Endpoint | Description          |
-|--------|----------|----------------------|
-| GET    | `/`      | Health check / status |
+The API is accessible under the `/api/bookmarks` prefix.
 
-> More endpoints coming soon as application and presentation layers are implemented.
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| **GET** | `/health` | Check system and database status |
+| **GET** | `/api/bookmarks` | Retrieve all bookmarks |
+| **POST** | `/api/bookmarks` | Create a new bookmark |
+| **GET** | `/api/bookmarks/:id` | Get bookmark details by ID |
+| **GET** | `/api/bookmarks/search/url/:url` | Find a bookmark by its URL |
+| **PUT** | `/api/bookmarks/:id` | Update an existing bookmark |
+| **DELETE** | `/api/bookmarks/:id` | Remove a bookmark |
+
+> For detailed request/response schemas, please refer to the [Full API Documentation](./backend/API_DOCUMENTATION.md).
 
 ---
 
