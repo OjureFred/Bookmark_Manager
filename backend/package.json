@@ -24,6 +24,8 @@
     "express": "^5.2.1",
     "jest": "^30.3.0",
     "pg": "^8.20.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
@@ -32,6 +34,8 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^25.5.0",
     "@types/pg": "^8.20.0",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
     "nodemon": "^3.1.14",
     "prisma": "^7.5.0",
     "ts-jest": "^29.4.6",
@@ -41,13 +45,20 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "roots": ["<rootDir>/src", "<rootDir>/__tests__"],
+    "roots": [
+      "<rootDir>/src",
+      "<rootDir>/__tests__"
+    ],
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{ts,js}",
       "!src/**/*.d.ts"
     ],
     "coverageDirectory": "coverage",
-    "coverageReporters": ["text", "lcov", "html"]
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ]
   }
 }

@@ -10,9 +10,13 @@ import { DeleteBookmarkUseCase } from './application/use-cases/DeleteBookmarkUse
 import { UpdateBookmarkUseCase } from './application/use-cases/UpdateBookmarkUseCase';
 import { BookmarkController } from './interface/controllers/BookmarkController';
 import { createBookmarkRoutes } from './interface/routes/bookmarkRoutes';
+import { setupSwagger } from './infrastructure/config/swagger';
 
 const app = express();
 app.use(express.json());
+
+// Setup Swagger
+setupSwagger(app);
 
 // Dependency Injection
 const bookmarkRepository = new PrismaBookmarkRepository(prisma);
@@ -28,6 +32,27 @@ const bookmarkController = new BookmarkController(createBookmarkUseCase, retriev
 app.use('/api/bookmarks', createBookmarkRoutes(bookmarkController));
 
 // Health Check
+/**
+ * @swagger
+ * /health:
+ *   get:
+ *     summary: Health check
+ *     description: Returns the status of the API and database connection.
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                 database:
+ *                   type: string
+ *       500:
+ *         description: Error
+ */
 app.get('/health', async (req, res) => {
     try {
         await prisma.$queryRaw`SELECT 1`;
