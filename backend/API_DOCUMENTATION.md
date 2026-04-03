@@ -2,6 +2,10 @@
 
 This document provides a comprehensive guide to the Bookmark Manager REST API endpoints.
 
+> [!TIP]
+> **Interactive Documentation**: You can also use the **Interactive Swagger UI** at:
+> `http://localhost:3000/api-docs` (Requires the server to be running)
+
 ---
 
 ## 🚦 Base URL

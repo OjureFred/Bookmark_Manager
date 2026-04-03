@@ -75,6 +75,7 @@ npm run dev
 ```
 
 The server will start at: **http://localhost:3000**
+Interactive API Documentation (Swagger) will be available at: **http://localhost:3000/api-docs**
 
 ### Production build
 ```bash
@@ -144,6 +145,7 @@ Value objects are immutable and self-validating:
 | Env config  | dotenv                            |
 | CORS        | cors                              |
 | Dev tooling | nodemon, ts-node                  |
+| Documentation| Swagger (swagger-ui-express, swagger-jsdoc) |
 
 ---
 
@@ -161,10 +163,14 @@ Run these from the `backend/` directory:
 
 ---
 
-## 📖 API Documentation
-
 Detailed information about the API endpoints, request bodies, and response formats can be found in:
+
+### 📖 Static Documentation
 👉 [**Backend API Documentation**](./backend/API_DOCUMENTATION.md)
+
+### 📡 Interactive Documentation (Swagger)
+When the server is running, you can access the interactive Swagger UI at:
+👉 [**http://localhost:3000/api-docs**](http://localhost:3000/api-docs)
 
 ---
 
