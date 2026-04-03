@@ -1,5 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import { prisma } from './infrastructure/database/prisma';
 import { PrismaBookmarkRepository } from './infrastructure/repositories/BookmarkRepository';
 import { CreateBookmarkUseCase } from './application/use-cases/CreateBookmarkUseCase';
@@ -13,6 +15,18 @@ import { createBookmarkRoutes } from './interface/routes/bookmarkRoutes';
 import { setupSwagger } from './infrastructure/config/swagger';
 
 const app = express();
+
+// Security Middleware
+app.use(helmet());
+
+// Rate Limiting
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+    message: 'Too many requests from this IP, please try again after 15 minutes',
+});
+app.use('/api/', limiter); // Apply to all API routes
+
 app.use(express.json());
 
 // Setup Swagger
