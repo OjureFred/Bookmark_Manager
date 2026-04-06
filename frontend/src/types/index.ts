@@ -6,8 +6,8 @@ export interface Bookmark {
     url: string;
     description: string;
     tags: string[];
-    createdAt: string;
-    updatedAt: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface ApiResponse<T = any> {

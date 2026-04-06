@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { prisma } from './infrastructure/database/prisma';
@@ -16,6 +17,7 @@ import { setupSwagger } from './infrastructure/config/swagger';
 
 const app = express();
 
+app.use(cors());
 // Security Middleware
 app.use(helmet());
 
