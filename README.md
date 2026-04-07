@@ -28,7 +28,7 @@ BookMark_Manager/
 │   ├── .env                  # Environment variables
 │   ├── package.json
 │   └── tsconfig.json
-├── frontend/                 # Frontend (coming soon)
+├── frontend/                 # Frontend app (React + Vite + TypeScript)
 ├── .gitignore
 └── README.md
 ```
@@ -56,7 +56,13 @@ BookMark_Manager/
    npm install
    ```
 
-3. **Set up environment variables**
+3. **Install frontend dependencies**
+   ```bash
+   cd ../frontend
+   npm install
+   ```
+
+4. **Set up environment variables**
 
    The `.env` file in the `backend/` folder already contains defaults:
    ```env
@@ -89,6 +95,50 @@ npm run start      # Runs the compiled output
 cd backend
 npx tsc --noEmit
 ```
+
+---
+
+## 🖥️ Frontend
+
+The frontend application is built with **React**, **TypeScript**, **Vite**, **Tailwind CSS**, and **Axios**. It consumes the backend API at `http://localhost:3000/api/bookmarks`.
+
+### Frontend structure
+
+- `frontend/src/main.tsx` — React entry point
+- `frontend/src/App.tsx` — top-level application shell
+- `frontend/src/pages/` — page components, including `AddBookmark.tsx`
+- `frontend/src/components/` — reusable UI components
+- `frontend/src/services/api.service.ts` — API utilities
+- `frontend/src/types/` — shared TypeScript interfaces
+
+### Run the frontend in development
+
+Open a new terminal, then:
+```bash
+cd frontend
+npm run dev
+```
+
+The frontend will start at the Vite dev server URL, typically **http://localhost:5173**.
+
+### Build and preview
+
+```bash
+cd frontend
+npm run build
+npm run preview
+```
+
+### Frontend scripts
+
+Run these from the `frontend/` directory:
+
+| Script | Command | Description |
+|--------|---------|-------------|
+| `dev` | `npm run dev` | Start Vite dev server |
+| `build` | `npm run build` | Compile TypeScript and build production assets |
+| `preview` | `npm run preview` | Preview the production build |
+| `lint` | `npm run lint` | Run ESLint checks |
 
 ---
 
