@@ -69,12 +69,14 @@ const Layout: React.FC = () => {
                         {bookmarks.map((bookmark) => (
                             <BookmarkCard
                                 key={bookmark.id}
+                                id={bookmark.id}
                                 title={bookmark.title}
                                 url={bookmark.url}
                                 description={bookmark.description}
                                 tags={bookmark.tags}
                                 createdAt={bookmark.createdAt}
                                 updatedAt={bookmark.updatedAt}
+                                onUpdate={fetchBookmarks}
                             />
                         ))}
                     </div>

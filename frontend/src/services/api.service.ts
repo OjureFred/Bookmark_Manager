@@ -1,11 +1,11 @@
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from "axios";
 import API_BASE_URL from "../config/api";
 
 class ApiService {
     private axios: AxiosInstance;
 
     constructor() {
-        this.axios = this.axios.create({
+        this.axios = axios.create({
             baseURL: API_BASE_URL,
             timeout: 10000,
             headers: {
